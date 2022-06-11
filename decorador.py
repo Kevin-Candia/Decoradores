@@ -122,11 +122,11 @@ def calculate_status_player(dict_players: dict[str, dict[str, int]]):
     for i in range(0, 7):
         bonus[i + 5] = round(bonus[i + 5] + final_status[list_bonus[i]] * add_bonus[i])
 
-    # print("VIT:", bonus[0])
-    # print("STR:", bonus[1])
-    # print("WILL:", bonus[2])
-    # print("INT:", bonus[3])
-    # print("AGI:", bonus[4])
+    print("VIT:", bonus[0])
+    print("STR:", bonus[1])
+    print("WILL:", bonus[2])
+    print("INT:", bonus[3])
+    print("AGI:", bonus[4])
     print("DEFENSE BASE", bonus[5])
     print("DEFENSE_MAGIC:", bonus[6])
     print("ATTACK:", bonus[7])
