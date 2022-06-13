@@ -1,4 +1,14 @@
+from datetime import datetime
 from random import choice, randrange
+
+
+def execution_time(func):
+    def wrapper(*args, **kwargs):
+        initial_time = datetime.now()
+        func(*args, **kwargs)
+        final_time = datetime.now()
+        print(f"Tiempo jugado: {(final_time - initial_time).total_seconds()}")
+    return wrapper
 
 
 def status__(vit: int, str: int, will: int, int: int, agi: int) -> tuple:
@@ -9,22 +19,25 @@ def status__(vit: int, str: int, will: int, int: int, agi: int) -> tuple:
 def start_player_game(status_player: list, status_enemy: list):
     return ["Player", "Enemy", status_player[9], status_player, status_enemy]
 
+
 def next_player_game(status_player: list, status_enemy: list):
     return ["Enemy", "Player", status_enemy[9], status_enemy, status_player]
 
+
 def game(func):
     def attack(player: dict[str, dict[str, int]], player_enemy: dict[str, dict[str, int]]) -> int:
-        print("**************************STATUS PLAYER*****************************")
+        print("*" * 20, "STATUS PLAYER", "*" * 20)
         status_player = calculate_status_player(player)
-        print("**************************STATUS PLAYER ENEMY*****************************")
-        status_enemy = calculate_status_player(player_enemy)
 
-        func(player, player_enemy)
+        print("*" * 20, "STATUS ENEMY", "*" * 20)
+        status_enemy = calculate_status_player(player_enemy)
 
         turns           = 0
         player_start    = ["Player", "Enemy"]
         start           = choice(player_start)
         print("***START ATTACK:", start)
+
+        func(player, player_enemy)
 
         start_player    = start_player_game(status_player, status_enemy)
         next_player     = next_player_game(status_player, status_enemy)
@@ -37,7 +50,7 @@ def game(func):
         life_enemy  = next_player[2]
 
         while True:
-            print("----------------------------------------------------------------")
+            print("-" * 50)
             print(f"{start_player[0]} LIFE", life_player)
             print(f"{next_player[0]} LIFE", life_enemy)
 
@@ -61,7 +74,7 @@ def game(func):
                 break
 
             turns += 1
-        print("******************END BATTLE***********************")
+        print("*" * 20, "END BATTLE", "*" * 20)
         print("CANTIDAD DE TURNOS:", turns)
         if life_player <= 0:
             print(f"***{next_player[0]} WIN***")
@@ -140,10 +153,10 @@ def calculate_status_player(dict_players: dict[str, dict[str, int]]):
     print(bonus)
     return bonus
 
-
+@execution_time
 @game
 def start_game(player: dict[str, dict[str, int]], enemy: dict[str, dict[str, int]]):
-    print("******************START BATTLE***********************")
+    print("*" * 20, "START BATTLE", "*" * 20)
 
 
 def run():
