@@ -1,5 +1,10 @@
 from datetime import datetime
+from http.client import FORBIDDEN
 from random import choice, randrange
+from classes.classes import ClassEnum
+
+from classes.player import Player
+from equipment.armor import EquipmentColor, EquipmentType, Equipment
 
 
 def execution_time(func):
@@ -15,6 +20,7 @@ def status__(vit: int, str: int, will: int, int: int, agi: int) -> tuple:
     def repeater(vit_: int, str_: int, will_: int, int_: int, agi_: int) -> tuple:
         return round(vit / vit_), round(str / str_), round(will / will_), round(int / int_), round(agi / agi_)
     return repeater
+
 
 def start_player_game(status_player: list, status_enemy: list):
     return ["Player", "Enemy", status_player[9], status_player, status_enemy]
@@ -163,14 +169,14 @@ def run():
     player = {
         "level"         : 1,
         "casco"         : {
-            "vit"           : 10, 
-            "str"           : 20, 
-            "will"          : 0, 
-            "int"           : 0, 
+            "vit"           : 10,
+            "str"           : 20,
+            "will"          : 0,
+            "int"           : 0,
             "agi"           : 10,
             "defense"       : 230,
             "defense_magic" : 120,
-            "attack"        : 0,      
+            "attack"        : 0,
             "attack_magic"  : 0,
             "hp"            : 144,
             "mp"            : 0,
@@ -180,14 +186,14 @@ def run():
             "probabilidad"  : 1,
         },
         "peto"          : {
-            "vit"           : 20, 
-            "str"           : 12, 
-            "will"          : 5, 
-            "int"           : 0, 
+            "vit"           : 20,
+            "str"           : 12,
+            "will"          : 5,
+            "int"           : 0,
             "agi"           : 2,
             "defense"       : 250,
             "defense_magic" : 200,
-            "attack"        : 0,      
+            "attack"        : 0,
             "attack_magic"  : 0,
             "hp"            : 250,
             "mp"            : 0,
@@ -406,7 +412,141 @@ def run():
         }
     }
 
-    start_game(player, enemy)
+    # start_game(player, enemy)
+
+    # print(f'CLASE:', ClassEnum.Killer.value)
+    # print(f'CLASE:', ClassEnum.Killer.name)
+    # clas = Class.Warrior
+    # print(clas)
+    # if Class.Warrior == Class.Warrior:
+    #     print('SON IGUALEs')
+        
+    
+    # Names = Enum("Names", [("Waiz",8), ("Tom",5), ("Sara",7), ("Lee",6)])
+
+    # print(Names.Sara.value)
+    # print(Names.Waiz.value)
+    
+    
+    
+    # evasion         : int      # Puntos de evasión
+    # hit             : int      # Puntos para golpear
+    # psl_dmg         : float    # Porcentaje de daño físico
+    # mgc_dmg         : float    # Porcentaje de daño mágico
+    # pbt_psl_dmg     : float    # Probabilidad de dar un golpe crítico físico
+    # pbt_mgc_dmg     : float    # Probabilidad de dar un golpe crítico mágico
+    # pbt_rdc_psl     : float    # Probabilidad de reducir un golpe crítico físico recibido
+    # pbt_rdc_mgc     : float    # Probabilidad de reducir un golpe crítico mágico recibido
+    # rdc_psl_dmg     : float    # Porcentaje de reducción por golpe crítico físico recibido
+    # rdc_mgc_dmg     : float    # Porcentaje de reducción por golpe crítico mágico recibido
+    head = Equipment(
+        type            = EquipmentType.Head,
+        name            = "Dark Helmet",
+        color           = EquipmentColor.White,
+        level           = 1,
+        vit             = 10,
+        str             = 20,
+        will            = 0,
+        int             = 0,
+        agi             = 10,
+        defense         = 230,
+        defense_magic   = 120,
+        attack          = 0,
+        attack_magic    = 0,
+        hp              = 144,
+        mp              = 0,
+        evasion         = 10,
+        hit             = 6,
+        psl_dmg         = 4,
+        mgc_dmg         = 1,
+        pbt_psl_dmg     = 1,
+        pbt_mgc_dmg     = 1,
+        pbt_rdc_psl     = 1,
+        pbt_rdc_mgc     = 1,
+        rdc_psl_dmg     = 1,
+        rdc_mgc_dmg     = 1,
+        durability      = 100,
+        fortify         = 0,
+        comment         = 'Armor of darkness',
+        stones          = []
+    )
+
+    body = Equipment(
+        type            = EquipmentType.Body,
+        name            = "Dark Body",
+        color           = EquipmentColor.White,
+        level           = 1,
+        vit             = 20,
+        str             = 12,
+        will            = 5,
+        int             = 0,
+        agi             = 2,
+        defense         = 250,
+        defense_magic   = 200,
+        attack          = 0,
+        attack_magic    = 0,
+        hp              = 250,
+        mp              = 0,
+        evasion         = 10,
+        hit             = 6,
+        psl_dmg         = 4,
+        mgc_dmg         = 1,
+        pbt_psl_dmg     = 1,
+        pbt_mgc_dmg     = 1,
+        pbt_rdc_psl     = 1,
+        pbt_rdc_mgc     = 1,
+        rdc_psl_dmg     = 1,
+        rdc_mgc_dmg     = 1,
+        durability      = 100,
+        fortify         = 0,
+        comment         = "Armor of darkness",
+        stones          = []
+    )
+
+    glove = Equipment(
+        type            = EquipmentType.Glove,
+        name            = "Dark Glove",
+        color           = EquipmentColor.White,
+        level           = 1,
+        vit             = 5,
+        str             = 4,
+        will            = 5,
+        int             = 0,
+        agi             = 2,
+        defense         = 120,
+        defense_magic   = 90,
+        attack          = 0,
+        attack_magic    = 0,
+        hp              = 40,
+        mp              = 0,
+        evasion         = 8,
+        hit             = 6,
+        psl_dmg         = 4,
+        mgc_dmg         = 1,
+        pbt_psl_dmg     = 1,
+        pbt_mgc_dmg     = 1,
+        pbt_rdc_psl     = 1,
+        pbt_rdc_mgc     = 1,
+        rdc_psl_dmg     = 1,
+        rdc_mgc_dmg     = 1,
+        durability      = 100,
+        fortify         = 0,
+        comment         = "Armor of darkness",
+        stones          = []
+    )
+
+    player = Player(
+        level   = 4,
+        name    = "Slasher"
+    )
+
+    player.put_on_armor(body)
+    player.put_on_armor(head)
+    player.put_on_armor(glove)
+
+    print(f"Jugador ARMOR: { player.armor.values() }")
+    print(f"Jugador LEVEL: { player.level }")
+    print(f"Jugador NAME : { player.name }")
 
 
 if __name__ == '__main__':
